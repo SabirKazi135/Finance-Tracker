@@ -28,6 +28,7 @@ export const useFinanceStore = create(
           date: tx.date || new Date().toISOString(),
           ...tx,
         };
+        // done
 
         const updated = [newTx, ...list];
 
