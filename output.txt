@@ -1,0 +1,3458 @@
+
+
+===== FILE: src/index.css =====
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+===== FILE: src/pages/Auth/Login.jsx =====
+
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+
+function Login() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="relative flex h-screen w-full overflow-hidden">
+      <div className="absolute right-0 top-0 z-0 hidden h-full w-[40%] bg-[#F0FDF4] md:block">
+        <div className="absolute -left-4 -top-7 z-10 size-[192px] rounded-[40px] bg-[#00A63E]" />
+        <div className="absolute -bottom-7 -left-4 z-10 size-[192px] rounded-[40px] bg-[#00C951]" />
+        <div className="absolute -right-10 top-[10%] z-10 size-[192px] rounded-[40px] bg-[#15803D] p-5">
+          <div className="size-full rounded-[20px] bg-[#F0FDF4]"></div>
+        </div>
+      </div>
+
+      <div className="relative z-50 flex h-full w-full flex-col items-center justify-center bg-white md:w-[60%]">
+        <img
+          src="logo1.png"
+          alt="symbol"
+          className="h-[121px] w-[320px] text-[24px] leading-[32px]"
+        />
+
+        <div className="flex h-[70%] w-[70%] flex-col items-stretch justify-center space-y-3">
+          <div>
+            <div className="text-[20px] font-semibold leading-[28px]">
+              Welcome Back
+            </div>
+            <p className="mb-[24px] mt-[5px] text-xs leading-[16px] text-slate-700">
+              Please enter your details to login
+            </p>
+          </div>
+
+          <form className="w-full space-y-6">
+            <div className="w-full">
+              <label htmlFor="email" className="mb-2 block cursor-pointer">
+                Email Address
+              </label>
+              <div className="relative w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 transition-colors duration-200">
+                <input
+                  id="email"
+                  type="email"
+                  className="w-full bg-[#F1F5F9] focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none focus:ring-0"
+                  placeholder="Enter your email"
+                />
+              </div>
+            </div>
+
+            <div className="w-full">
+              <label htmlFor="password" className="mb-2 block cursor-pointer">
+                Password
+              </label>
+              <div className="relative w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 transition-colors duration-200">
+                <input
+                  id="password"
+                  type={showPassword ? 'text' : 'password'}
+                  className="w-full bg-[#F1F5F9] pr-10 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none focus:ring-0"
+                  placeholder="Min 8 characters"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-3"
+                >
+                  {showPassword ? (
+                    <EyeOff size={20} color="#00C951" />
+                  ) : (
+                    <Eye size={20} color="#B9C5D4" />
+                  )}
+                </button>
+              </div>
+            </div>
+
+            <div className="w-full">
+              <button
+                type="submit"
+                className="w-full rounded-[6px] bg-[#00C951] py-3 font-semibold text-white transition-colors duration-200 hover:bg-[#D6EFDF] hover:text-[#00C951]"
+              >
+                Login
+              </button>
+              <p className="mt-[12px] text-[13px] leading-[17px]">
+                Don't have Account?{' '}
+                <a className="cursor-pointer text-[13px] font-[600] text-[#16a34a] underline">
+                  SignUp
+                </a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Login;
+
+
+===== FILE: src/pages/Auth/Signup.jsx =====
+
+
+
+===== FILE: src/pages/Dashboard.jsx =====
+
+
+
+===== FILE: src/App.jsx =====
+
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Login from './pages/Auth/Login';
+
+export default function App() {
+  return (
+    <div className="bg-white">
+      <Login />
+    </div>
+  );
+}
+
+
+===== FILE: src/main.jsx =====
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom'; // 🟢 Add this line
+
+import App from './App.jsx';
+import './index.css';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+);
+
+
+===== FILE: src/index.css =====
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+===== FILE: src/pages/Auth/Login.jsx =====
+
+// src/pages/Auth/Login.jsx
+import AuthLayout from './components/AuthLayout';
+import LoginForm from './components/LoginForm';
+
+export default function Login() {
+  return (
+    <AuthLayout>
+      <LoginForm />
+    </AuthLayout>
+  );
+}
+
+
+===== FILE: src/pages/Auth/Signup.jsx =====
+
+// src/pages/Auth/Signup.jsx
+import AuthLayout from './components/AuthLayout';
+import SignupForm from './components/SignupForm';
+
+export default function Signup() {
+  return (
+    <AuthLayout>
+      <SignupForm />
+    </AuthLayout>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/AuthLayout.jsx =====
+
+// src/pages/Auth/components/AuthLayout.jsx
+export default function AuthLayout({ children }) {
+  return (
+    <div className="relative flex h-screen w-full overflow-hidden">
+      {/* Right side design */}
+      <div className="absolute right-0 top-0 z-0 hidden h-full w-[40%] bg-[#F0FDF4] md:block">
+        <div className="absolute -left-4 -top-7 z-10 size-[192px] rounded-[40px] bg-[#00A63E]" />
+        <div className="absolute -bottom-7 -left-4 z-10 size-[192px] rounded-[40px] bg-[#00C951]" />
+        <div className="absolute -right-10 top-[10%] z-10 size-[192px] rounded-[40px] bg-[#15803D] p-5">
+          <div className="size-full rounded-[20px] bg-[#F0FDF4]" />
+        </div>
+
+        <img
+          src="logo3.png"
+          alt=""
+          className="absolute bottom-[10px] left-8 z-50 size-[256px] h-auto rounded-[12px] shadow-lg shadow-green-400/15 lg:aspect-square lg:w-[calc(100%-64px)]"
+        />
+
+        <div className="absolute left-8 right-8 top-8 z-[100] flex gap-6 rounded-xl border-gray-200/50 bg-white p-4 shadow-md shadow-green-400/10">
+          <div className="flex size-12 items-center justify-center rounded-full bg-[#00A63E] text-[26px] text-white drop-shadow-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={26}
+              height={26}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M14.828 14.828 21 21" />
+              <path d="M21 16v5h-5" />
+              <path d="m21 3-9 9-4-4-6 6" />
+              <path d="M21 8V3h-5" />
+            </svg>
+          </div>
+          <div>
+            <h6 className="mb-1 text-[12px] text-gray-500">
+              Track Your Income & Expenses
+            </h6>
+            <span className="text-[20px]">₹4,40,000</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Left side (form area) */}
+      <div className="relative z-50 flex h-full w-full flex-col items-center justify-center bg-white md:w-[60%]">
+        <img
+          src="logo1.png"
+          alt="symbol"
+          className="h-[121px] w-[320px] text-[24px] leading-[32px]"
+        />
+        {children}
+      </div>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/LoginForm.jsx =====
+
+// src/pages/Auth/components/LoginForm.jsx
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export default function LoginForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="flex h-[70%] w-[70%] flex-col items-stretch justify-center space-y-3">
+      <div>
+        <div className="text-[20px] font-semibold leading-[28px]">
+          Welcome Back
+        </div>
+        <p className="mb-[24px] mt-[5px] text-xs leading-[16px] text-slate-700">
+          Please enter your details to login
+        </p>
+      </div>
+
+      <form className="w-full space-y-6">
+        <div>
+          <label htmlFor="email" className="mb-2 block cursor-pointer">
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="mb-2 block cursor-pointer">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Min 8 characters"
+              className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 pr-10 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-3"
+            >
+              {showPassword ? (
+                <EyeOff size={20} color="#00C951" />
+              ) : (
+                <Eye size={20} color="#B9C5D4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-[6px] bg-[#00C951] py-3 font-semibold text-white hover:bg-[#D6EFDF] hover:text-[#00C951]"
+        >
+          Login
+        </button>
+
+        <p className="mt-[12px] text-[13px]">
+          Don't have an account?{' '}
+          <Link
+            to="/signup"
+            className="cursor-pointer font-semibold text-[#16a34a] underline"
+          >
+            Sign Up
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/SignupForm.jsx =====
+
+// src/pages/Auth/components/SignupForm.jsx
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export default function SignupForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="flex h-[70%] w-[70%] flex-col items-stretch justify-center space-y-3">
+      <div>
+        <div className="text-[20px] font-semibold leading-[28px]">
+          Create an Account
+        </div>
+        <p className="mb-[24px] mt-[5px] text-xs leading-[16px] text-slate-700">
+          Please enter your details to sign up
+        </p>
+      </div>
+
+      <form className="w-full space-y-6">
+        <div>
+          <label htmlFor="email" className="mb-2 block cursor-pointer">
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="mb-2 block cursor-pointer">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Min 8 characters"
+              className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 pr-10 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-3"
+            >
+              {showPassword ? (
+                <EyeOff size={20} color="#00C951" />
+              ) : (
+                <Eye size={20} color="#B9C5D4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-[6px] bg-[#00C951] py-3 font-semibold text-white hover:bg-[#D6EFDF] hover:text-[#00C951]"
+        >
+          Sign Up
+        </button>
+
+        <p className="mt-[12px] text-[13px]">
+          Already have an account?{' '}
+          <Link
+            to="/login"
+            className="cursor-pointer font-semibold text-[#16a34a] underline"
+          >
+            Login
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Dashboard.jsx =====
+
+
+
+===== FILE: src/App.jsx =====
+
+import { Routes, Route } from 'react-router-dom';
+import Login from './pages/Auth/Login';
+import Signup from './pages/Auth/Signup';
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+    </Routes>
+  );
+}
+
+
+===== FILE: src/main.jsx =====
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom'; // 🟢 Add this line
+
+import App from './App.jsx';
+import './index.css';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+);
+
+
+===== FILE: src/index.css =====
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+===== FILE: src/pages/Auth/Login.jsx =====
+
+// src/pages/Auth/Login.jsx
+import AuthLayout from './components/AuthLayout';
+import LoginForm from './components/LoginForm';
+
+export default function Login() {
+  return (
+    <AuthLayout>
+      <LoginForm />
+    </AuthLayout>
+  );
+}
+
+
+===== FILE: src/pages/Auth/Signup.jsx =====
+
+// src/pages/Auth/Signup.jsx
+import AuthLayout from './components/AuthLayout';
+import SignupForm from './components/SignupForm';
+
+export default function Signup() {
+  return (
+    <AuthLayout>
+      <SignupForm />
+    </AuthLayout>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/AuthLayout.jsx =====
+
+// src/pages/Auth/components/AuthLayout.jsx
+export default function AuthLayout({ children }) {
+  return (
+    <div className="relative flex h-screen w-full overflow-hidden">
+      {/* Right side design */}
+      <div className="absolute right-0 top-0 z-0 hidden h-full w-[40%] bg-[#F0FDF4] md:block">
+        <div className="absolute -left-4 -top-7 z-10 size-[192px] rounded-[40px] bg-[#00A63E]" />
+        <div className="absolute -bottom-7 -left-4 z-10 size-[192px] rounded-[40px] bg-[#00C951]" />
+        <div className="absolute -right-10 top-[10%] z-10 size-[192px] rounded-[40px] bg-[#15803D] p-5">
+          <div className="size-full rounded-[20px] bg-[#F0FDF4]" />
+        </div>
+
+        <img
+          src="logo3.png"
+          alt=""
+          className="absolute bottom-[10px] left-8 z-50 size-[256px] h-auto rounded-[12px] shadow-lg shadow-green-400/15 lg:aspect-square lg:w-[calc(100%-64px)]"
+        />
+
+        <div className="absolute left-8 right-8 top-8 z-[100] flex gap-6 rounded-xl border-gray-200/50 bg-white p-4 shadow-md shadow-green-400/10">
+          <div className="flex size-12 items-center justify-center rounded-full bg-[#00A63E] text-[26px] text-white drop-shadow-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={26}
+              height={26}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M14.828 14.828 21 21" />
+              <path d="M21 16v5h-5" />
+              <path d="m21 3-9 9-4-4-6 6" />
+              <path d="M21 8V3h-5" />
+            </svg>
+          </div>
+          <div>
+            <h6 className="mb-1 text-[12px] text-gray-500">
+              Track Your Income & Expenses
+            </h6>
+            <span className="text-[20px]">₹4,40,000</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Left side (form area) */}
+      <div className="relative z-50 flex h-full w-full flex-col items-center justify-center bg-white md:w-[60%]">
+        <img
+          src="logo1.png"
+          alt="symbol"
+          className="h-[121px] w-[320px] text-[24px] leading-[32px]"
+        />
+        {children}
+      </div>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/LoginForm.jsx =====
+
+// src/pages/Auth/components/LoginForm.jsx
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export default function LoginForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="flex h-[70%] w-[70%] flex-col items-stretch justify-center space-y-3">
+      <div>
+        <div className="text-[20px] font-semibold leading-[28px]">
+          Welcome Back
+        </div>
+        <p className="mb-[24px] mt-[5px] text-xs leading-[16px] text-slate-700">
+          Please enter your details to login
+        </p>
+      </div>
+
+      <form className="w-full space-y-6">
+        <div>
+          <label htmlFor="email" className="mb-2 block cursor-pointer">
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="mb-2 block cursor-pointer">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Min 8 characters"
+              className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 pr-10 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-3"
+            >
+              {showPassword ? (
+                <EyeOff size={20} color="#00C951" />
+              ) : (
+                <Eye size={20} color="#B9C5D4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-[6px] bg-[#00C951] py-3 font-semibold text-white hover:bg-[#D6EFDF] hover:text-[#00C951]"
+        >
+          Login
+        </button>
+
+        <p className="mt-[12px] text-[13px]">
+          Don't have an account?{' '}
+          <Link
+            to="/signup"
+            className="cursor-pointer font-semibold text-[#16a34a] underline"
+          >
+            Sign Up
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/SignupForm.jsx =====
+
+// src/pages/Auth/components/SignupForm.jsx
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export default function SignupForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="flex h-[70%] w-[70%] flex-col items-stretch justify-center space-y-3">
+      <div>
+        <div className="text-[20px] font-semibold leading-[28px]">
+          Create an Account
+        </div>
+        <p className="mb-[24px] mt-[5px] text-xs leading-[16px] text-slate-700">
+          Please enter your details to sign up
+        </p>
+      </div>
+
+      <form className="w-full space-y-6">
+        <div>
+          <label htmlFor="email" className="mb-2 block cursor-pointer">
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="mb-2 block cursor-pointer">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Min 8 characters"
+              className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 pr-10 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-3"
+            >
+              {showPassword ? (
+                <EyeOff size={20} color="#00C951" />
+              ) : (
+                <Eye size={20} color="#B9C5D4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-[6px] bg-[#00C951] py-3 font-semibold text-white hover:bg-[#D6EFDF] hover:text-[#00C951]"
+        >
+          Sign Up
+        </button>
+
+        <p className="mt-[12px] text-[13px]">
+          Already have an account?{' '}
+          <Link
+            to="/login"
+            className="cursor-pointer font-semibold text-[#16a34a] underline"
+          >
+            Login
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Dashboard.jsx =====
+
+
+
+===== FILE: src/App.jsx =====
+
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import Login from './pages/Auth/Login';
+import Signup from './pages/Auth/Signup';
+
+export default function App() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route
+          path="/login"
+          element={
+            <motion.div
+              initial={{ x: 100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -100, opacity: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Login />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <motion.div
+              initial={{ x: 100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -100, opacity: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Signup />
+            </motion.div>
+          }
+        />
+      </Routes>
+    </AnimatePresence>
+  );
+}
+
+
+===== FILE: src/main.jsx =====
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom'; // 🟢 Add this line
+
+import App from './App.jsx';
+import './index.css';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+);
+
+
+===== FILE: src/index.css =====
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+===== FILE: src/pages/Auth/Login.jsx =====
+
+// src/pages/Auth/Login.jsx
+import AuthLayout from './components/AuthLayout';
+import LoginForm from './components/LoginForm';
+
+export default function Login() {
+  return (
+    <AuthLayout>
+      <LoginForm />
+    </AuthLayout>
+  );
+}
+
+
+===== FILE: src/pages/Auth/Signup.jsx =====
+
+// src/pages/Auth/Signup.jsx
+import AuthLayout from './components/AuthLayout';
+import SignupForm from './components/SignupForm';
+
+export default function Signup() {
+  return (
+    <AuthLayout>
+      <SignupForm />
+    </AuthLayout>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/AuthLayout.jsx =====
+
+// src/pages/Auth/components/AuthLayout.jsx
+export default function AuthLayout({ children }) {
+  return (
+    <div className="relative flex h-screen w-full overflow-hidden">
+      {/* Right side design */}
+      <div className="absolute right-0 top-0 z-0 hidden h-full w-[40%] bg-[#F0FDF4] md:block">
+        <div className="absolute -left-4 -top-7 z-10 size-[192px] rounded-[40px] bg-[#00A63E]" />
+        <div className="absolute -bottom-7 -left-4 z-10 size-[192px] rounded-[40px] bg-[#00C951]" />
+        <div className="absolute -right-10 top-[10%] z-10 size-[192px] rounded-[40px] bg-[#15803D] p-5">
+          <div className="size-full rounded-[20px] bg-[#F0FDF4]" />
+        </div>
+
+        <img
+          src="logo3.png"
+          alt=""
+          className="absolute bottom-[10px] left-8 z-50 size-[256px] h-auto rounded-[12px] shadow-lg shadow-green-400/15 lg:aspect-square lg:w-[calc(100%-64px)]"
+        />
+
+        <div className="absolute left-8 right-8 top-8 z-[100] flex gap-6 rounded-xl border-gray-200/50 bg-white p-4 shadow-md shadow-green-400/10">
+          <div className="flex size-12 items-center justify-center rounded-full bg-[#00A63E] text-[26px] text-white drop-shadow-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={26}
+              height={26}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M14.828 14.828 21 21" />
+              <path d="M21 16v5h-5" />
+              <path d="m21 3-9 9-4-4-6 6" />
+              <path d="M21 8V3h-5" />
+            </svg>
+          </div>
+          <div>
+            <h6 className="mb-1 text-[12px] text-gray-500">
+              Track Your Income & Expenses
+            </h6>
+            <span className="text-[20px]">₹4,40,000</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Left side (form area) */}
+      <div className="relative z-50 flex h-full w-full flex-col items-center justify-center bg-white md:w-[60%]">
+        <img
+          src="logo1.png"
+          alt="symbol"
+          className="h-[121px] w-[320px] text-[24px] leading-[32px]"
+        />
+        {children}
+      </div>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/LoginForm.jsx =====
+
+// src/pages/Auth/components/LoginForm.jsx
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export default function LoginForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="flex h-[70%] w-[70%] flex-col items-stretch justify-center space-y-3">
+      <div>
+        <div className="text-[20px] font-semibold leading-[28px]">
+          Welcome Back
+        </div>
+        <p className="mb-[24px] mt-[5px] text-xs leading-[16px] text-slate-700">
+          Please enter your details to login
+        </p>
+      </div>
+
+      <form className="w-full space-y-6">
+        <div>
+          <label htmlFor="email" className="mb-2 block cursor-pointer">
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="mb-2 block cursor-pointer">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Min 8 characters"
+              className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 pr-10 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-3"
+            >
+              {showPassword ? (
+                <EyeOff size={20} color="#00C951" />
+              ) : (
+                <Eye size={20} color="#B9C5D4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-[6px] bg-[#00C951] py-3 font-semibold text-white hover:bg-[#D6EFDF] hover:text-[#00C951]"
+        >
+          Login
+        </button>
+
+        <p className="mt-[12px] text-[13px]">
+          Don't have an account?{' '}
+          <Link
+            to="/signup"
+            className="cursor-pointer font-semibold text-[#16a34a] underline"
+          >
+            Sign Up
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/SignupForm.jsx =====
+
+// src/pages/Auth/components/SignupForm.jsx
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export default function SignupForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="flex h-[70%] w-[70%] flex-col items-stretch justify-center space-y-3">
+      <div>
+        <div className="text-[20px] font-semibold leading-[28px]">
+          Create an Account
+        </div>
+        <p className="mb-[24px] mt-[5px] text-xs leading-[16px] text-slate-700">
+          Please enter your details to sign up
+        </p>
+      </div>
+
+      <form className="w-full space-y-6">
+        <div>
+          <label htmlFor="email" className="mb-2 block cursor-pointer">
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="mb-2 block cursor-pointer">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Min 8 characters"
+              className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 pr-10 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-3"
+            >
+              {showPassword ? (
+                <EyeOff size={20} color="#00C951" />
+              ) : (
+                <Eye size={20} color="#B9C5D4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-[6px] bg-[#00C951] py-3 font-semibold text-white hover:bg-[#D6EFDF] hover:text-[#00C951]"
+        >
+          Sign Up
+        </button>
+
+        <p className="mt-[12px] text-[13px]">
+          Already have an account?{' '}
+          <Link
+            to="/login"
+            className="cursor-pointer font-semibold text-[#16a34a] underline"
+          >
+            Login
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Total.jsx =====
+
+function Total() {
+  return (
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+      {/* Card 1 */}
+      <div className="flex items-center gap-4 rounded-2xl border-gray-200/50 bg-white p-6 shadow-md shadow-gray-100">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#16a24a] text-[26px] text-white drop-shadow-xl">
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 512 512"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M435.2 80H76.8c-24.9 0-44.6 19.6-44.6 44L32 388c0 24.4 19.9 44 44.8 44h358.4c24.9 0 44.8-19.6 44.8-44V124c0-24.4-19.9-44-44.8-44zm0 308H76.8V256h358.4v132zm0-220H76.8v-44h358.4v44z" />
+          </svg>
+        </div>
+
+        <div>
+          <h6 className="mb-1 text-sm text-gray-500">Total Balance</h6>
+          <span className="text-[22px] font-semibold">₹70,000</span>
+        </div>
+      </div>
+
+      {/* Card 2 */}
+      <div className="flex items-center gap-4 rounded-2xl border-gray-200/50 bg-white p-6 shadow-md shadow-gray-100">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FF6900] text-[26px] text-white drop-shadow-xl">
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 512 512"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M461.2 128H80c-8.84 0-16-7.16-16-16s7.16-16 16-16h384c8.84 0 16-7.16 16-16 0-26.51-21.49-48-48-48H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h397.2c28.02 0 50.8-21.53 50.8-48V176c0-26.47-22.78-48-50.8-48zM416 336c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32z" />
+          </svg>
+        </div>
+
+        <div>
+          <h6 className="mb-1 text-sm text-gray-500">Total Income</h6>
+          <span className="text-[22px] font-semibold">₹50,000</span>
+        </div>
+      </div>
+
+      {/* Card 3 */}
+      <div className="flex items-center gap-4 rounded-2xl border-gray-200/50 bg-white p-6 shadow-md shadow-gray-100">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FB2C36] text-[26px] text-white drop-shadow-xl">
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 640 512"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M535 41c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l64 64c4.5 4.5 7 10.6 7 17s-2.5 12.5-7 17l-64 64c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l23-23L384 112c-13.3 0-24-10.7-24-24s10.7-24 24-24l174.1 0L535 41zM105 377l-23 23L256 400c13.3 0 24 10.7 24 24s-10.7 24-24 24L81.9 448l23 23c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L7 441c-4.5-4.5-7-10.6-7-17s2.5-12.5 7-17l64-64c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9zM96 64l241.9 0c-3.7 7.2-5.9 15.3-5.9 24c0 28.7 23.3 52 52 52l117.4 0c-4 17 .6 35.5 13.8 48.8c20.3 20.3 53.2 20.3 73.5 0L608 169.5 608 384c0 35.3-28.7 64-64 64l-241.9 0c3.7-7.2 5.9-15.3 5.9-24c0-28.7-23.3-52-52-52l-117.4 0c4-17-.6-35.5-13.8-48.8c-20.3-20.3-53.2-20.3-73.5 0L32 342.5 32 128c0-35.3 28.7-64 64-64zm64 64l-64 0 0 64c35.3 0 64-28.7 64-64zM544 320c-35.3 0-64 28.7-64 64l64 0 0-64zM320 352a96 96 0 1 0 0-192 96 96 0 1 0 0 192z" />
+          </svg>
+        </div>
+
+        <div>
+          <h6 className="mb-1 text-sm text-gray-500">Total Expense</h6>
+          <span className="text-[22px] font-semibold">₹20,000</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Total;
+
+
+===== FILE: src/App.jsx =====
+
+import { Routes, Route } from 'react-router-dom';
+import Login from './pages/Auth/Login';
+import Signup from './pages/Auth/Signup';
+import Total from './pages/Total';
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+
+      {/* Protected Pages */}
+      <Route path="/total" element={<Total />} />
+    </Routes>
+  );
+}
+
+
+===== FILE: src/main.jsx =====
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom'; // 🟢 Add this line
+
+import App from './App.jsx';
+import './index.css';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+);
+
+
+===== FILE: src/index.css =====
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+===== FILE: src/pages/Auth/Login.jsx =====
+
+// src/pages/Auth/Login.jsx
+import AuthLayout from './components/AuthLayout';
+import LoginForm from './components/LoginForm';
+
+export default function Login() {
+  return (
+    <AuthLayout>
+      <LoginForm />
+    </AuthLayout>
+  );
+}
+
+
+===== FILE: src/pages/Auth/Signup.jsx =====
+
+// src/pages/Auth/Signup.jsx
+import AuthLayout from './components/AuthLayout';
+import SignupForm from './components/SignupForm';
+
+export default function Signup() {
+  return (
+    <AuthLayout>
+      <SignupForm />
+    </AuthLayout>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/AuthLayout.jsx =====
+
+// src/pages/Auth/components/AuthLayout.jsx
+export default function AuthLayout({ children }) {
+  return (
+    <div className="relative flex h-screen w-full overflow-hidden">
+      {/* Right side design */}
+      <div className="absolute right-0 top-0 z-0 hidden h-full w-[40%] bg-[#F0FDF4] md:block">
+        <div className="absolute -left-4 -top-7 z-10 size-[192px] rounded-[40px] bg-[#00A63E]" />
+        <div className="absolute -bottom-7 -left-4 z-10 size-[192px] rounded-[40px] bg-[#00C951]" />
+        <div className="absolute -right-10 top-[10%] z-10 size-[192px] rounded-[40px] bg-[#15803D] p-5">
+          <div className="size-full rounded-[20px] bg-[#F0FDF4]" />
+        </div>
+
+        <img
+          src="logo3.png"
+          alt=""
+          className="absolute bottom-[10px] left-8 z-50 size-[256px] h-auto rounded-[12px] shadow-lg shadow-green-400/15 lg:aspect-square lg:w-[calc(100%-64px)]"
+        />
+
+        <div className="absolute left-8 right-8 top-8 z-[100] flex gap-6 rounded-xl border-gray-200/50 bg-white p-4 shadow-md shadow-green-400/10">
+          <div className="flex size-12 items-center justify-center rounded-full bg-[#00A63E] text-[26px] text-white drop-shadow-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={26}
+              height={26}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M14.828 14.828 21 21" />
+              <path d="M21 16v5h-5" />
+              <path d="m21 3-9 9-4-4-6 6" />
+              <path d="M21 8V3h-5" />
+            </svg>
+          </div>
+          <div>
+            <h6 className="mb-1 text-[12px] text-gray-500">
+              Track Your Income & Expenses
+            </h6>
+            <span className="text-[20px]">₹4,40,000</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Left side (form area) */}
+      <div className="relative z-50 flex h-full w-full flex-col items-center justify-center bg-white md:w-[60%]">
+        <img
+          src="logo1.png"
+          alt="symbol"
+          className="h-[121px] w-[320px] text-[24px] leading-[32px]"
+        />
+        {children}
+      </div>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/LoginForm.jsx =====
+
+// src/pages/Auth/components/LoginForm.jsx
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export default function LoginForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="flex h-[70%] w-[70%] flex-col items-stretch justify-center space-y-3">
+      <div>
+        <div className="text-[20px] font-semibold leading-[28px]">
+          Welcome Back
+        </div>
+        <p className="mb-[24px] mt-[5px] text-xs leading-[16px] text-slate-700">
+          Please enter your details to login
+        </p>
+      </div>
+
+      <form className="w-full space-y-6">
+        <div>
+          <label htmlFor="email" className="mb-2 block cursor-pointer">
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="mb-2 block cursor-pointer">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Min 8 characters"
+              className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 pr-10 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-3"
+            >
+              {showPassword ? (
+                <EyeOff size={20} color="#00C951" />
+              ) : (
+                <Eye size={20} color="#B9C5D4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-[6px] bg-[#00C951] py-3 font-semibold text-white hover:bg-[#D6EFDF] hover:text-[#00C951]"
+        >
+          Login
+        </button>
+
+        <p className="mt-[12px] text-[13px]">
+          Don't have an account?{' '}
+          <Link
+            to="/signup"
+            className="cursor-pointer font-semibold text-[#16a34a] underline"
+          >
+            Sign Up
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/SignupForm.jsx =====
+
+// src/pages/Auth/components/SignupForm.jsx
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export default function SignupForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="flex h-[70%] w-[70%] flex-col items-stretch justify-center space-y-3">
+      <div>
+        <div className="text-[20px] font-semibold leading-[28px]">
+          Create an Account
+        </div>
+        <p className="mb-[24px] mt-[5px] text-xs leading-[16px] text-slate-700">
+          Please enter your details to sign up
+        </p>
+      </div>
+
+      <form className="w-full space-y-6">
+        <div>
+          <label htmlFor="email" className="mb-2 block cursor-pointer">
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="mb-2 block cursor-pointer">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Min 8 characters"
+              className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 pr-10 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-3"
+            >
+              {showPassword ? (
+                <EyeOff size={20} color="#00C951" />
+              ) : (
+                <Eye size={20} color="#B9C5D4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-[6px] bg-[#00C951] py-3 font-semibold text-white hover:bg-[#D6EFDF] hover:text-[#00C951]"
+        >
+          Sign Up
+        </button>
+
+        <p className="mt-[12px] text-[13px]">
+          Already have an account?{' '}
+          <Link
+            to="/login"
+            className="cursor-pointer font-semibold text-[#16a34a] underline"
+          >
+            Login
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Total.jsx =====
+
+function Total() {
+  return (
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+      {/* Card 1 */}
+      <div className="flex items-center gap-4 rounded-2xl border-gray-200/50 bg-white p-6 shadow-md shadow-gray-100">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#16a24a] text-[26px] text-white drop-shadow-xl">
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 512 512"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M435.2 80H76.8c-24.9 0-44.6 19.6-44.6 44L32 388c0 24.4 19.9 44 44.8 44h358.4c24.9 0 44.8-19.6 44.8-44V124c0-24.4-19.9-44-44.8-44zm0 308H76.8V256h358.4v132zm0-220H76.8v-44h358.4v44z" />
+          </svg>
+        </div>
+
+        <div>
+          <h6 className="mb-1 text-sm text-gray-500">Total Balance</h6>
+          <span className="text-[22px] font-semibold">₹70,000</span>
+        </div>
+      </div>
+
+      {/* Card 2 */}
+      <div className="flex items-center gap-4 rounded-2xl border-gray-200/50 bg-white p-6 shadow-md shadow-gray-100">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FF6900] text-[26px] text-white drop-shadow-xl">
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 512 512"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M461.2 128H80c-8.84 0-16-7.16-16-16s7.16-16 16-16h384c8.84 0 16-7.16 16-16 0-26.51-21.49-48-48-48H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h397.2c28.02 0 50.8-21.53 50.8-48V176c0-26.47-22.78-48-50.8-48zM416 336c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32z" />
+          </svg>
+        </div>
+
+        <div>
+          <h6 className="mb-1 text-sm text-gray-500">Total Income</h6>
+          <span className="text-[22px] font-semibold">₹50,000</span>
+        </div>
+      </div>
+
+      {/* Card 3 */}
+      <div className="flex items-center gap-4 rounded-2xl border-gray-200/50 bg-white p-6 shadow-md shadow-gray-100">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FB2C36] text-[26px] text-white drop-shadow-xl">
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 640 512"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M535 41c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l64 64c4.5 4.5 7 10.6 7 17s-2.5 12.5-7 17l-64 64c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l23-23L384 112c-13.3 0-24-10.7-24-24s10.7-24 24-24l174.1 0L535 41zM105 377l-23 23L256 400c13.3 0 24 10.7 24 24s-10.7 24-24 24L81.9 448l23 23c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L7 441c-4.5-4.5-7-10.6-7-17s2.5-12.5 7-17l64-64c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9zM96 64l241.9 0c-3.7 7.2-5.9 15.3-5.9 24c0 28.7 23.3 52 52 52l117.4 0c-4 17 .6 35.5 13.8 48.8c20.3 20.3 53.2 20.3 73.5 0L608 169.5 608 384c0 35.3-28.7 64-64 64l-241.9 0c3.7-7.2 5.9-15.3 5.9-24c0-28.7-23.3-52-52-52l-117.4 0c4-17-.6-35.5-13.8-48.8c-20.3-20.3-53.2-20.3-73.5 0L32 342.5 32 128c0-35.3 28.7-64 64-64zm64 64l-64 0 0 64c35.3 0 64-28.7 64-64zM544 320c-35.3 0-64 28.7-64 64l64 0 0-64zM320 352a96 96 0 1 0 0-192 96 96 0 1 0 0 192z" />
+          </svg>
+        </div>
+
+        <div>
+          <h6 className="mb-1 text-sm text-gray-500">Total Expense</h6>
+          <span className="text-[22px] font-semibold">₹20,000</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Total;
+
+
+===== FILE: src/App.jsx =====
+
+import { Routes, Route } from 'react-router-dom';
+import Login from './pages/Auth/Login';
+import Signup from './pages/Auth/Signup';
+import Total from './pages/Total';
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+
+      {/* Protected Pages */}
+      <Route path="/total" element={<Total />} />
+    </Routes>
+  );
+}
+
+
+===== FILE: src/main.jsx =====
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom'; // 🟢 Add this line
+
+import App from './App.jsx';
+import './index.css';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+);
+
+
+===== FILE: src/index.css =====
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+===== FILE: src/pages/Auth/Login.jsx =====
+
+// src/pages/Auth/Login.jsx
+import AuthLayout from './components/AuthLayout';
+import LoginForm from './components/LoginForm';
+
+export default function Login() {
+  return (
+    <AuthLayout>
+      <LoginForm />
+    </AuthLayout>
+  );
+}
+
+
+===== FILE: src/pages/Auth/Signup.jsx =====
+
+// src/pages/Auth/Signup.jsx
+import AuthLayout from './components/AuthLayout';
+import SignupForm from './components/SignupForm';
+
+export default function Signup() {
+  return (
+    <AuthLayout>
+      <SignupForm />
+    </AuthLayout>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/AuthLayout.jsx =====
+
+// src/pages/Auth/components/AuthLayout.jsx
+export default function AuthLayout({ children }) {
+  return (
+    <div className="relative flex h-screen w-full overflow-hidden">
+      {/* Right side design */}
+      <div className="absolute right-0 top-0 z-0 hidden h-full w-[40%] bg-[#F0FDF4] md:block">
+        <div className="absolute -left-4 -top-7 z-10 size-[192px] rounded-[40px] bg-[#00A63E]" />
+        <div className="absolute -bottom-7 -left-4 z-10 size-[192px] rounded-[40px] bg-[#00C951]" />
+        <div className="absolute -right-10 top-[10%] z-10 size-[192px] rounded-[40px] bg-[#15803D] p-5">
+          <div className="size-full rounded-[20px] bg-[#F0FDF4]" />
+        </div>
+
+        <img
+          src="logo3.png"
+          alt=""
+          className="absolute bottom-[10px] left-8 z-50 size-[256px] h-auto rounded-[12px] shadow-lg shadow-green-400/15 lg:aspect-square lg:w-[calc(100%-64px)]"
+        />
+
+        <div className="absolute left-8 right-8 top-8 z-[100] flex gap-6 rounded-xl border-gray-200/50 bg-white p-4 shadow-md shadow-green-400/10">
+          <div className="flex size-12 items-center justify-center rounded-full bg-[#00A63E] text-[26px] text-white drop-shadow-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={26}
+              height={26}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M14.828 14.828 21 21" />
+              <path d="M21 16v5h-5" />
+              <path d="m21 3-9 9-4-4-6 6" />
+              <path d="M21 8V3h-5" />
+            </svg>
+          </div>
+          <div>
+            <h6 className="mb-1 text-[12px] text-gray-500">
+              Track Your Income & Expenses
+            </h6>
+            <span className="text-[20px]">₹4,40,000</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Left side (form area) */}
+      <div className="relative z-50 flex h-full w-full flex-col items-center justify-center bg-white md:w-[60%]">
+        <img
+          src="logo1.png"
+          alt="symbol"
+          className="h-[121px] w-[320px] text-[24px] leading-[32px]"
+        />
+        {children}
+      </div>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/LoginForm.jsx =====
+
+// src/pages/Auth/components/LoginForm.jsx
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export default function LoginForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="flex h-[70%] w-[70%] flex-col items-stretch justify-center space-y-3">
+      <div>
+        <div className="text-[20px] font-semibold leading-[28px]">
+          Welcome Back
+        </div>
+        <p className="mb-[24px] mt-[5px] text-xs leading-[16px] text-slate-700">
+          Please enter your details to login
+        </p>
+      </div>
+
+      <form className="w-full space-y-6">
+        <div>
+          <label htmlFor="email" className="mb-2 block cursor-pointer">
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="mb-2 block cursor-pointer">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Min 8 characters"
+              className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 pr-10 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-3"
+            >
+              {showPassword ? (
+                <EyeOff size={20} color="#00C951" />
+              ) : (
+                <Eye size={20} color="#B9C5D4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-[6px] bg-[#00C951] py-3 font-semibold text-white hover:bg-[#D6EFDF] hover:text-[#00C951]"
+        >
+          Login
+        </button>
+
+        <p className="mt-[12px] text-[13px]">
+          Don't have an account?{' '}
+          <Link
+            to="/signup"
+            className="cursor-pointer font-semibold text-[#16a34a] underline"
+          >
+            Sign Up
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/SignupForm.jsx =====
+
+// src/pages/Auth/components/SignupForm.jsx
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export default function SignupForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="flex h-[70%] w-[70%] flex-col items-stretch justify-center space-y-3">
+      <div>
+        <div className="text-[20px] font-semibold leading-[28px]">
+          Create an Account
+        </div>
+        <p className="mb-[24px] mt-[5px] text-xs leading-[16px] text-slate-700">
+          Please enter your details to sign up
+        </p>
+      </div>
+
+      <form className="w-full space-y-6">
+        <div>
+          <label htmlFor="email" className="mb-2 block cursor-pointer">
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="mb-2 block cursor-pointer">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Min 8 characters"
+              className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 pr-10 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-3"
+            >
+              {showPassword ? (
+                <EyeOff size={20} color="#00C951" />
+              ) : (
+                <Eye size={20} color="#B9C5D4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-[6px] bg-[#00C951] py-3 font-semibold text-white hover:bg-[#D6EFDF] hover:text-[#00C951]"
+        >
+          Sign Up
+        </button>
+
+        <p className="mt-[12px] text-[13px]">
+          Already have an account?{' '}
+          <Link
+            to="/login"
+            className="cursor-pointer font-semibold text-[#16a34a] underline"
+          >
+            Login
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Total.jsx =====
+
+function Total() {
+  return (
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+      {/* Card 1 */}
+      <div className="flex items-center gap-4 rounded-2xl border-gray-200/50 bg-white p-6 shadow-md shadow-gray-100">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#16a24a] text-[26px] text-white drop-shadow-xl">
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 512 512"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M435.2 80H76.8c-24.9 0-44.6 19.6-44.6 44L32 388c0 24.4 19.9 44 44.8 44h358.4c24.9 0 44.8-19.6 44.8-44V124c0-24.4-19.9-44-44.8-44zm0 308H76.8V256h358.4v132zm0-220H76.8v-44h358.4v44z" />
+          </svg>
+        </div>
+
+        <div>
+          <h6 className="mb-1 text-sm text-gray-500">Total Balance</h6>
+          <span className="text-[22px] font-semibold">₹70,000</span>
+        </div>
+      </div>
+
+      {/* Card 2 */}
+      <div className="flex items-center gap-4 rounded-2xl border-gray-200/50 bg-white p-6 shadow-md shadow-gray-100">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FF6900] text-[26px] text-white drop-shadow-xl">
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 512 512"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M461.2 128H80c-8.84 0-16-7.16-16-16s7.16-16 16-16h384c8.84 0 16-7.16 16-16 0-26.51-21.49-48-48-48H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h397.2c28.02 0 50.8-21.53 50.8-48V176c0-26.47-22.78-48-50.8-48zM416 336c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32z" />
+          </svg>
+        </div>
+
+        <div>
+          <h6 className="mb-1 text-sm text-gray-500">Total Income</h6>
+          <span className="text-[22px] font-semibold">₹50,000</span>
+        </div>
+      </div>
+
+      {/* Card 3 */}
+      <div className="flex items-center gap-4 rounded-2xl border-gray-200/50 bg-white p-6 shadow-md shadow-gray-100">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FB2C36] text-[26px] text-white drop-shadow-xl">
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 640 512"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M535 41c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l64 64c4.5 4.5 7 10.6 7 17s-2.5 12.5-7 17l-64 64c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l23-23L384 112c-13.3 0-24-10.7-24-24s10.7-24 24-24l174.1 0L535 41zM105 377l-23 23L256 400c13.3 0 24 10.7 24 24s-10.7 24-24 24L81.9 448l23 23c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L7 441c-4.5-4.5-7-10.6-7-17s2.5-12.5 7-17l64-64c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9zM96 64l241.9 0c-3.7 7.2-5.9 15.3-5.9 24c0 28.7 23.3 52 52 52l117.4 0c-4 17 .6 35.5 13.8 48.8c20.3 20.3 53.2 20.3 73.5 0L608 169.5 608 384c0 35.3-28.7 64-64 64l-241.9 0c3.7-7.2 5.9-15.3 5.9-24c0-28.7-23.3-52-52-52l-117.4 0c4-17-.6-35.5-13.8-48.8c-20.3-20.3-53.2-20.3-73.5 0L32 342.5 32 128c0-35.3 28.7-64 64-64zm64 64l-64 0 0 64c35.3 0 64-28.7 64-64zM544 320c-35.3 0-64 28.7-64 64l64 0 0-64zM320 352a96 96 0 1 0 0-192 96 96 0 1 0 0 192z" />
+          </svg>
+        </div>
+
+        <div>
+          <h6 className="mb-1 text-sm text-gray-500">Total Expense</h6>
+          <span className="text-[22px] font-semibold">₹20,000</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Total;
+
+
+===== FILE: src/App.jsx =====
+
+import { Routes, Route } from 'react-router-dom';
+import Login from './pages/Auth/Login';
+import Signup from './pages/Auth/Signup';
+import Total from './pages/Total';
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+
+      {/* Protected Pages */}
+      <Route path="/total" element={<Total />} />
+    </Routes>
+  );
+}
+
+
+===== FILE: src/main.jsx =====
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom'; // 🟢 Add this line
+
+import App from './App.jsx';
+import './index.css';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+);
+
+
+===== FILE: src/index.css =====
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+===== FILE: src/pages/Auth/Login.jsx =====
+
+// src/pages/Auth/Login.jsx
+import AuthLayout from './components/AuthLayout';
+import LoginForm from './components/LoginForm';
+
+export default function Login() {
+  return (
+    <AuthLayout>
+      <LoginForm />
+    </AuthLayout>
+  );
+}
+
+
+===== FILE: src/pages/Auth/Signup.jsx =====
+
+// src/pages/Auth/Signup.jsx
+import AuthLayout from './components/AuthLayout';
+import SignupForm from './components/SignupForm';
+
+export default function Signup() {
+  return (
+    <AuthLayout>
+      <SignupForm />
+    </AuthLayout>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/AuthLayout.jsx =====
+
+// src/pages/Auth/components/AuthLayout.jsx
+export default function AuthLayout({ children }) {
+  return (
+    <div className="relative flex h-screen w-full overflow-hidden">
+      {/* Right side design */}
+      <div className="absolute right-0 top-0 z-0 hidden h-full w-[40%] bg-[#F0FDF4] md:block">
+        <div className="absolute -left-4 -top-7 z-10 size-[192px] rounded-[40px] bg-[#00A63E]" />
+        <div className="absolute -bottom-7 -left-4 z-10 size-[192px] rounded-[40px] bg-[#00C951]" />
+        <div className="absolute -right-10 top-[10%] z-10 size-[192px] rounded-[40px] bg-[#15803D] p-5">
+          <div className="size-full rounded-[20px] bg-[#F0FDF4]" />
+        </div>
+
+        <img
+          src="logo3.png"
+          alt=""
+          className="absolute bottom-[10px] left-8 z-50 size-[256px] h-auto rounded-[12px] shadow-lg shadow-green-400/15 lg:aspect-square lg:w-[calc(100%-64px)]"
+        />
+
+        <div className="absolute left-8 right-8 top-8 z-[100] flex gap-6 rounded-xl border-gray-200/50 bg-white p-4 shadow-md shadow-green-400/10">
+          <div className="flex size-12 items-center justify-center rounded-full bg-[#00A63E] text-[26px] text-white drop-shadow-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={26}
+              height={26}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M14.828 14.828 21 21" />
+              <path d="M21 16v5h-5" />
+              <path d="m21 3-9 9-4-4-6 6" />
+              <path d="M21 8V3h-5" />
+            </svg>
+          </div>
+          <div>
+            <h6 className="mb-1 text-[12px] text-gray-500">
+              Track Your Income & Expenses
+            </h6>
+            <span className="text-[20px]">₹4,40,000</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Left side (form area) */}
+      <div className="relative z-50 flex h-full w-full flex-col items-center justify-center bg-white md:w-[60%]">
+        <img
+          src="logo1.png"
+          alt="symbol"
+          className="h-[121px] w-[320px] text-[24px] leading-[32px]"
+        />
+        {children}
+      </div>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/LoginForm.jsx =====
+
+// src/pages/Auth/components/LoginForm.jsx
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export default function LoginForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="flex h-[70%] w-[70%] flex-col items-stretch justify-center space-y-3">
+      <div>
+        <div className="text-[20px] font-semibold leading-[28px]">
+          Welcome Back
+        </div>
+        <p className="mb-[24px] mt-[5px] text-xs leading-[16px] text-slate-700">
+          Please enter your details to login
+        </p>
+      </div>
+
+      <form className="w-full space-y-6">
+        <div>
+          <label htmlFor="email" className="mb-2 block cursor-pointer">
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="mb-2 block cursor-pointer">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Min 8 characters"
+              className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 pr-10 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-3"
+            >
+              {showPassword ? (
+                <EyeOff size={20} color="#00C951" />
+              ) : (
+                <Eye size={20} color="#B9C5D4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-[6px] bg-[#00C951] py-3 font-semibold text-white hover:bg-[#D6EFDF] hover:text-[#00C951]"
+        >
+          Login
+        </button>
+
+        <p className="mt-[12px] text-[13px]">
+          Don't have an account?{' '}
+          <Link
+            to="/signup"
+            className="cursor-pointer font-semibold text-[#16a34a] underline"
+          >
+            Sign Up
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/SignupForm.jsx =====
+
+// src/pages/Auth/components/SignupForm.jsx
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export default function SignupForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="flex h-[70%] w-[70%] flex-col items-stretch justify-center space-y-3">
+      <div>
+        <div className="text-[20px] font-semibold leading-[28px]">
+          Create an Account
+        </div>
+        <p className="mb-[24px] mt-[5px] text-xs leading-[16px] text-slate-700">
+          Please enter your details to sign up
+        </p>
+      </div>
+
+      <form className="w-full space-y-6">
+        <div>
+          <label htmlFor="email" className="mb-2 block cursor-pointer">
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="mb-2 block cursor-pointer">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Min 8 characters"
+              className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 pr-10 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-3"
+            >
+              {showPassword ? (
+                <EyeOff size={20} color="#00C951" />
+              ) : (
+                <Eye size={20} color="#B9C5D4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-[6px] bg-[#00C951] py-3 font-semibold text-white hover:bg-[#D6EFDF] hover:text-[#00C951]"
+        >
+          Sign Up
+        </button>
+
+        <p className="mt-[12px] text-[13px]">
+          Already have an account?{' '}
+          <Link
+            to="/login"
+            className="cursor-pointer font-semibold text-[#16a34a] underline"
+          >
+            Login
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Total.jsx =====
+
+function Total() {
+  return (
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+      {/* Card 1 */}
+      <div className="flex items-center gap-4 rounded-2xl border-gray-200/50 bg-white p-6 shadow-md shadow-gray-100">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#16a24a] text-[26px] text-white drop-shadow-xl">
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 512 512"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M435.2 80H76.8c-24.9 0-44.6 19.6-44.6 44L32 388c0 24.4 19.9 44 44.8 44h358.4c24.9 0 44.8-19.6 44.8-44V124c0-24.4-19.9-44-44.8-44zm0 308H76.8V256h358.4v132zm0-220H76.8v-44h358.4v44z" />
+          </svg>
+        </div>
+
+        <div>
+          <h6 className="mb-1 text-sm text-gray-500">Total Balance</h6>
+          <span className="text-[22px] font-semibold">₹70,000</span>
+        </div>
+      </div>
+
+      {/* Card 2 */}
+      <div className="flex items-center gap-4 rounded-2xl border-gray-200/50 bg-white p-6 shadow-md shadow-gray-100">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FF6900] text-[26px] text-white drop-shadow-xl">
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 512 512"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M461.2 128H80c-8.84 0-16-7.16-16-16s7.16-16 16-16h384c8.84 0 16-7.16 16-16 0-26.51-21.49-48-48-48H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h397.2c28.02 0 50.8-21.53 50.8-48V176c0-26.47-22.78-48-50.8-48zM416 336c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32z" />
+          </svg>
+        </div>
+
+        <div>
+          <h6 className="mb-1 text-sm text-gray-500">Total Income</h6>
+          <span className="text-[22px] font-semibold">₹50,000</span>
+        </div>
+      </div>
+
+      {/* Card 3 */}
+      <div className="flex items-center gap-4 rounded-2xl border-gray-200/50 bg-white p-6 shadow-md shadow-gray-100">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FB2C36] text-[26px] text-white drop-shadow-xl">
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 640 512"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M535 41c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l64 64c4.5 4.5 7 10.6 7 17s-2.5 12.5-7 17l-64 64c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l23-23L384 112c-13.3 0-24-10.7-24-24s10.7-24 24-24l174.1 0L535 41zM105 377l-23 23L256 400c13.3 0 24 10.7 24 24s-10.7 24-24 24L81.9 448l23 23c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L7 441c-4.5-4.5-7-10.6-7-17s2.5-12.5 7-17l64-64c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9zM96 64l241.9 0c-3.7 7.2-5.9 15.3-5.9 24c0 28.7 23.3 52 52 52l117.4 0c-4 17 .6 35.5 13.8 48.8c20.3 20.3 53.2 20.3 73.5 0L608 169.5 608 384c0 35.3-28.7 64-64 64l-241.9 0c3.7-7.2 5.9-15.3 5.9-24c0-28.7-23.3-52-52-52l-117.4 0c4-17-.6-35.5-13.8-48.8c-20.3-20.3-53.2-20.3-73.5 0L32 342.5 32 128c0-35.3 28.7-64 64-64zm64 64l-64 0 0 64c35.3 0 64-28.7 64-64zM544 320c-35.3 0-64 28.7-64 64l64 0 0-64zM320 352a96 96 0 1 0 0-192 96 96 0 1 0 0 192z" />
+          </svg>
+        </div>
+
+        <div>
+          <h6 className="mb-1 text-sm text-gray-500">Total Expense</h6>
+          <span className="text-[22px] font-semibold">₹20,000</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Total;
+
+
+===== FILE: src/App.jsx =====
+
+import { Routes, Route } from 'react-router-dom';
+import Login from './pages/Auth/Login';
+import Signup from './pages/Auth/Signup';
+import Total from './pages/Total';
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+
+      {/* Protected Pages */}
+      <Route path="/total" element={<Total />} />
+    </Routes>
+  );
+}
+
+
+===== FILE: src/main.jsx =====
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom'; // 🟢 Add this line
+
+import App from './App.jsx';
+import './index.css';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+);
+
+
+===== FILE: src/index.css =====
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+===== FILE: src/pages/Auth/Login.jsx =====
+
+// src/pages/Auth/Login.jsx
+import AuthLayout from './components/AuthLayout';
+import LoginForm from './components/LoginForm';
+
+export default function Login() {
+  return (
+    <AuthLayout>
+      <LoginForm />
+    </AuthLayout>
+  );
+}
+
+
+===== FILE: src/pages/Auth/Signup.jsx =====
+
+// src/pages/Auth/Signup.jsx
+import AuthLayout from './components/AuthLayout';
+import SignupForm from './components/SignupForm';
+
+export default function Signup() {
+  return (
+    <AuthLayout>
+      <SignupForm />
+    </AuthLayout>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/AuthLayout.jsx =====
+
+// src/pages/Auth/components/AuthLayout.jsx
+export default function AuthLayout({ children }) {
+  return (
+    <div className="relative flex h-screen w-full overflow-hidden">
+      {/* Right side design */}
+      <div className="absolute right-0 top-0 z-0 hidden h-full w-[40%] bg-[#F0FDF4] md:block">
+        <div className="absolute -left-4 -top-7 z-10 size-[192px] rounded-[40px] bg-[#00A63E]" />
+        <div className="absolute -bottom-7 -left-4 z-10 size-[192px] rounded-[40px] bg-[#00C951]" />
+        <div className="absolute -right-10 top-[10%] z-10 size-[192px] rounded-[40px] bg-[#15803D] p-5">
+          <div className="size-full rounded-[20px] bg-[#F0FDF4]" />
+        </div>
+
+        <img
+          src="logo3.png"
+          alt=""
+          className="absolute bottom-[10px] left-8 z-50 size-[256px] h-auto rounded-[12px] shadow-lg shadow-green-400/15 lg:aspect-square lg:w-[calc(100%-64px)]"
+        />
+
+        <div className="absolute left-8 right-8 top-8 z-[100] flex gap-6 rounded-xl border-gray-200/50 bg-white p-4 shadow-md shadow-green-400/10">
+          <div className="flex size-12 items-center justify-center rounded-full bg-[#00A63E] text-[26px] text-white drop-shadow-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={26}
+              height={26}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M14.828 14.828 21 21" />
+              <path d="M21 16v5h-5" />
+              <path d="m21 3-9 9-4-4-6 6" />
+              <path d="M21 8V3h-5" />
+            </svg>
+          </div>
+          <div>
+            <h6 className="mb-1 text-[12px] text-gray-500">
+              Track Your Income & Expenses
+            </h6>
+            <span className="text-[20px]">₹4,40,000</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Left side (form area) */}
+      <div className="relative z-50 flex h-full w-full flex-col items-center justify-center bg-white md:w-[60%]">
+        <img
+          src="logo1.png"
+          alt="symbol"
+          className="h-[121px] w-[320px] text-[24px] leading-[32px]"
+        />
+        {children}
+      </div>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/LoginForm.jsx =====
+
+// src/pages/Auth/components/LoginForm.jsx
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export default function LoginForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="flex h-[70%] w-[70%] flex-col items-stretch justify-center space-y-3">
+      <div>
+        <div className="text-[20px] font-semibold leading-[28px]">
+          Welcome Back
+        </div>
+        <p className="mb-[24px] mt-[5px] text-xs leading-[16px] text-slate-700">
+          Please enter your details to login
+        </p>
+      </div>
+
+      <form className="w-full space-y-6">
+        <div>
+          <label htmlFor="email" className="mb-2 block cursor-pointer">
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="mb-2 block cursor-pointer">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Min 8 characters"
+              className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 pr-10 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-3"
+            >
+              {showPassword ? (
+                <EyeOff size={20} color="#00C951" />
+              ) : (
+                <Eye size={20} color="#B9C5D4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-[6px] bg-[#00C951] py-3 font-semibold text-white hover:bg-[#D6EFDF] hover:text-[#00C951]"
+        >
+          Login
+        </button>
+
+        <p className="mt-[12px] text-[13px]">
+          Don't have an account?{' '}
+          <Link
+            to="/signup"
+            className="cursor-pointer font-semibold text-[#16a34a] underline"
+          >
+            Sign Up
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/SignupForm.jsx =====
+
+// src/pages/Auth/components/SignupForm.jsx
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export default function SignupForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="flex h-[70%] w-[70%] flex-col items-stretch justify-center space-y-3">
+      <div>
+        <div className="text-[20px] font-semibold leading-[28px]">
+          Create an Account
+        </div>
+        <p className="mb-[24px] mt-[5px] text-xs leading-[16px] text-slate-700">
+          Please enter your details to sign up
+        </p>
+      </div>
+
+      <form className="w-full space-y-6">
+        <div>
+          <label htmlFor="email" className="mb-2 block cursor-pointer">
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="mb-2 block cursor-pointer">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Min 8 characters"
+              className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 pr-10 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-3"
+            >
+              {showPassword ? (
+                <EyeOff size={20} color="#00C951" />
+              ) : (
+                <Eye size={20} color="#B9C5D4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-[6px] bg-[#00C951] py-3 font-semibold text-white hover:bg-[#D6EFDF] hover:text-[#00C951]"
+        >
+          Sign Up
+        </button>
+
+        <p className="mt-[12px] text-[13px]">
+          Already have an account?{' '}
+          <Link
+            to="/login"
+            className="cursor-pointer font-semibold text-[#16a34a] underline"
+          >
+            Login
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Total.jsx =====
+
+import MainLayout from '../layouts/MainLayout';
+
+function Total() {
+  return (
+    <MainLayout>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        {/* Card 1 */}
+        <div className="flex items-center gap-4 rounded-2xl border-gray-200/50 bg-white p-6 shadow-md shadow-gray-100">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#16a24a] text-[26px] text-white drop-shadow-xl">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              strokeWidth="0"
+              viewBox="0 0 512 512"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M435.2 80H76.8c-24.9 0-44.6 19.6-44.6 44L32 388c0 24.4 19.9 44 44.8 44h358.4c24.9 0 44.8-19.6 44.8-44V124c0-24.4-19.9-44-44.8-44zm0 308H76.8V256h358.4v132zm0-220H76.8v-44h358.4v44z" />
+            </svg>
+          </div>
+
+          <div>
+            <h6 className="mb-1 text-sm text-gray-500">Total Balance</h6>
+            <span className="text-[22px] font-semibold">₹70,000</span>
+          </div>
+        </div>
+
+        {/* Card 2 */}
+        <div className="flex items-center gap-4 rounded-2xl border-gray-200/50 bg-white p-6 shadow-md shadow-gray-100">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FF6900] text-[26px] text-white drop-shadow-xl">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              strokeWidth="0"
+              viewBox="0 0 512 512"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M461.2 128H80c-8.84 0-16-7.16-16-16s7.16-16 16-16h384c8.84 0 16-7.16 16-16 0-26.51-21.49-48-48-48H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h397.2c28.02 0 50.8-21.53 50.8-48V176c0-26.47-22.78-48-50.8-48zM416 336c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32z" />
+            </svg>
+          </div>
+
+          <div>
+            <h6 className="mb-1 text-sm text-gray-500">Total Income</h6>
+            <span className="text-[22px] font-semibold">₹50,000</span>
+          </div>
+        </div>
+
+        {/* Card 3 */}
+        <div className="flex items-center gap-4 rounded-2xl border-gray-200/50 bg-white p-6 shadow-md shadow-gray-100">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FB2C36] text-[26px] text-white drop-shadow-xl">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              strokeWidth="0"
+              viewBox="0 0 640 512"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M535 41c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l64 64c4.5 4.5 7 10.6 7 17s-2.5 12.5-7 17l-64 64c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l23-23L384 112c-13.3 0-24-10.7-24-24s10.7-24 24-24l174.1 0L535 41zM105 377l-23 23L256 400c13.3 0 24 10.7 24 24s-10.7 24-24 24L81.9 448l23 23c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L7 441c-4.5-4.5-7-10.6-7-17s2.5-12.5 7-17l64-64c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9zM96 64l241.9 0c-3.7 7.2-5.9 15.3-5.9 24c0 28.7 23.3 52 52 52l117.4 0c-4 17 .6 35.5 13.8 48.8c20.3 20.3 53.2 20.3 73.5 0L608 169.5 608 384c0 35.3-28.7 64-64 64l-241.9 0c3.7-7.2 5.9-15.3 5.9-24c0-28.7-23.3-52-52-52l-117.4 0c4-17-.6-35.5-13.8-48.8c-20.3-20.3-53.2-20.3-73.5 0L32 342.5 32 128c0-35.3 28.7-64 64-64zm64 64l-64 0 0 64c35.3 0 64-28.7 64-64zM544 320c-35.3 0-64 28.7-64 64l64 0 0-64zM320 352a96 96 0 1 0 0-192 96 96 0 1 0 0 192z" />
+            </svg>
+          </div>
+
+          <div>
+            <h6 className="mb-1 text-sm text-gray-500">Total Expense</h6>
+            <span className="text-[22px] font-semibold">₹20,000</span>
+          </div>
+        </div>
+      </div>
+    </MainLayout>
+  );
+}
+
+export default Total;
+
+
+===== FILE: src/layouts/MainLayout.jsx =====
+
+import Topbar from '../components/Topbar';
+import Sidebar from '../components/Sidebar';
+import { useState } from 'react';
+
+export default function MainLayout({ children }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div>
+      <Topbar onMenuClick={() => setOpen(!open)} />
+      <Sidebar open={open} setOpen={setOpen} />
+
+      <div className="p-5 pl-0 pt-[70px] lg:pl-64">{children}</div>
+    </div>
+  );
+}
+
+
+===== FILE: src/components/Sidebar.jsx =====
+
+import { Link, useLocation } from 'react-router-dom';
+
+export default function Sidebar({ open, setOpen }) {
+  const { pathname } = useLocation();
+
+  return (
+    <div
+      className={`fixed top-[70px] z-40 -ml-4 bg-white transition-all lg:ml-0 ${open ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}
+    >
+      <div className="sticky top-[70px] h-[calc(100vh-61px)] w-64 border-r border-gray-200/50 bg-white p-5">
+        {/* Profile */}
+        <div className="mb-7 mt-3 flex flex-col items-center justify-center gap-3">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 font-medium text-gray-900">
+            SK
+          </div>
+          <h5 className="font-medium leading-6 text-gray-950">Sabir Kazi</h5>
+        </div>
+
+        {/* Menu Buttons */}
+        <SidebarBtn
+          label="Profile"
+          icon={<ProfileIcon />}
+          active={pathname === '/profile'}
+        />
+        <SidebarBtn
+          label="Dashboard"
+          icon={<DashboardIcon />}
+          active={pathname === '/dashboard'}
+          highlight
+        />
+        <SidebarBtn
+          label="Income"
+          icon={<IncomeIcon />}
+          active={pathname === '/income'}
+        />
+        <SidebarBtn
+          label="Expense"
+          icon={<ExpenseIcon />}
+          active={pathname === '/expense'}
+        />
+        <SidebarBtn label="Logout" icon={<LogoutIcon />} active={false} />
+      </div>
+    </div>
+  );
+}
+
+function SidebarBtn({ label, icon, active, highlight }) {
+  return (
+    <button
+      className={`mb-3 flex w-full cursor-pointer items-center gap-4 rounded-lg px-6 py-3 text-[15px] ${highlight ? 'bg-primary text-white' : ''} ${active ? 'bg-gray-100' : ''}`}
+    >
+      <span className="text-xl">{icon}</span>
+      {label}
+    </button>
+  );
+}
+
+function ProfileIcon() {
+  return (
+    <svg viewBox="0 0 496 512" fill="currentColor" className="text-xl">
+      <path d="M248 8C111..."></path>
+    </svg>
+  );
+}
+
+function DashboardIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="text-xl"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <rect width="7" height="9" x="3" y="3" rx="1"></rect>
+      <rect width="7" height="5" x="14" y="3" rx="1"></rect>
+      <rect width="7" height="9" x="14" y="12" rx="1"></rect>
+      <rect width="7" height="5" x="3" y="16" rx="1"></rect>
+    </svg>
+  );
+}
+
+function IncomeIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="text-xl"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <path d="M17 14h.01"></path>
+      <path d="M7 7h12a2 2..."></path>
+    </svg>
+  );
+}
+
+function ExpenseIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="text-xl"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <path d="M11 15h2a2 2 0 1 0..."></path>
+    </svg>
+  );
+}
+
+function LogoutIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="text-xl"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <path d="M9 21H5a2 2..."></path>
+      <polyline points="16 17 21 12 16 7"></polyline>
+      <line x1="21" x2="9" y1="12" y2="12"></line>
+    </svg>
+  );
+}
+
+
+===== FILE: src/components/Topbar.jsx =====
+
+import { X } from 'lucide-react';
+
+export default function Topbar({ onMenuClick }) {
+  return (
+    <div className="sticky top-0 z-30 flex gap-5 border-b border-gray-200/50 bg-white px-7 py-3 backdrop-blur-[2px]">
+      {/* Mobile Close / Menu Button */}
+      <button className="block text-black lg:hidden" onClick={onMenuClick}>
+        <X className="text-2xl" />
+      </button>
+
+      {/* Logo */}
+      <img
+        alt="logo1.png"
+        className="w-35 cursor-pointer bg-transparent object-contain md:ml-5"
+        src="what.png"
+      />
+    </div>
+  );
+}
+
+
+===== FILE: src/App.jsx =====
+
+import { Routes, Route } from 'react-router-dom';
+import Login from './pages/Auth/Login';
+import Signup from './pages/Auth/Signup';
+import Total from './pages/Total';
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+
+      {/* Protected Pages */}
+      <Route path="/total" element={<Total />} />
+    </Routes>
+  );
+}
+
+
+===== FILE: src/main.jsx =====
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom'; // 🟢 Add this line
+
+import App from './App.jsx';
+import './index.css';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+);
+
+
+===== FILE: src/index.css =====
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+===== FILE: src/pages/Auth/Login.jsx =====
+
+// src/pages/Auth/Login.jsx
+import AuthLayout from './components/AuthLayout';
+import LoginForm from './components/LoginForm';
+
+export default function Login() {
+  return (
+    <AuthLayout>
+      <LoginForm />
+    </AuthLayout>
+  );
+}
+
+
+===== FILE: src/pages/Auth/Signup.jsx =====
+
+// src/pages/Auth/Signup.jsx
+import AuthLayout from './components/AuthLayout';
+import SignupForm from './components/SignupForm';
+
+export default function Signup() {
+  return (
+    <AuthLayout>
+      <SignupForm />
+    </AuthLayout>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/AuthLayout.jsx =====
+
+// src/pages/Auth/components/AuthLayout.jsx
+export default function AuthLayout({ children }) {
+  return (
+    <div className="relative flex h-screen w-full overflow-hidden">
+      {/* Right side design */}
+      <div className="absolute right-0 top-0 z-0 hidden h-full w-[40%] bg-[#F0FDF4] md:block">
+        <div className="absolute -left-4 -top-7 z-10 size-[192px] rounded-[40px] bg-[#00A63E]" />
+        <div className="absolute -bottom-7 -left-4 z-10 size-[192px] rounded-[40px] bg-[#00C951]" />
+        <div className="absolute -right-10 top-[10%] z-10 size-[192px] rounded-[40px] bg-[#15803D] p-5">
+          <div className="size-full rounded-[20px] bg-[#F0FDF4]" />
+        </div>
+
+        <img
+          src="logo3.png"
+          alt=""
+          className="absolute bottom-[10px] left-8 z-50 size-[256px] h-auto rounded-[12px] shadow-lg shadow-green-400/15 lg:aspect-square lg:w-[calc(100%-64px)]"
+        />
+
+        <div className="absolute left-8 right-8 top-8 z-[100] flex gap-6 rounded-xl border-gray-200/50 bg-white p-4 shadow-md shadow-green-400/10">
+          <div className="flex size-12 items-center justify-center rounded-full bg-[#00A63E] text-[26px] text-white drop-shadow-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={26}
+              height={26}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#fff"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M14.828 14.828 21 21" />
+              <path d="M21 16v5h-5" />
+              <path d="m21 3-9 9-4-4-6 6" />
+              <path d="M21 8V3h-5" />
+            </svg>
+          </div>
+          <div>
+            <h6 className="mb-1 text-[12px] text-gray-500">
+              Track Your Income & Expenses
+            </h6>
+            <span className="text-[20px]">₹4,40,000</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Left side (form area) */}
+      <div className="relative z-50 flex h-full w-full flex-col items-center justify-center bg-white md:w-[60%]">
+        <img
+          src="logo1.png"
+          alt="symbol"
+          className="h-[121px] w-[320px] text-[24px] leading-[32px]"
+        />
+        {children}
+      </div>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/LoginForm.jsx =====
+
+// src/pages/Auth/components/LoginForm.jsx
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export default function LoginForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="flex h-[70%] w-[70%] flex-col items-stretch justify-center space-y-3">
+      <div>
+        <div className="text-[20px] font-semibold leading-[28px]">
+          Welcome Back
+        </div>
+        <p className="mb-[24px] mt-[5px] text-xs leading-[16px] text-slate-700">
+          Please enter your details to login
+        </p>
+      </div>
+
+      <form className="w-full space-y-6">
+        <div>
+          <label htmlFor="email" className="mb-2 block cursor-pointer">
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="mb-2 block cursor-pointer">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Min 8 characters"
+              className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 pr-10 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-3"
+            >
+              {showPassword ? (
+                <EyeOff size={20} color="#00C951" />
+              ) : (
+                <Eye size={20} color="#B9C5D4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-[6px] bg-[#00C951] py-3 font-semibold text-white hover:bg-[#D6EFDF] hover:text-[#00C951]"
+        >
+          Login
+        </button>
+
+        <p className="mt-[12px] text-[13px]">
+          Don't have an account?{' '}
+          <Link
+            to="/signup"
+            className="cursor-pointer font-semibold text-[#16a34a] underline"
+          >
+            Sign Up
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Auth/components/SignupForm.jsx =====
+
+// src/pages/Auth/components/SignupForm.jsx
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export default function SignupForm() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  return (
+    <div className="flex h-[70%] w-[70%] flex-col items-stretch justify-center space-y-3">
+      <div>
+        <div className="text-[20px] font-semibold leading-[28px]">
+          Create an Account
+        </div>
+        <p className="mb-[24px] mt-[5px] text-xs leading-[16px] text-slate-700">
+          Please enter your details to sign up
+        </p>
+      </div>
+
+      <form className="w-full space-y-6">
+        <div>
+          <label htmlFor="email" className="mb-2 block cursor-pointer">
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="mb-2 block cursor-pointer">
+            Password
+          </label>
+          <div className="relative">
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Min 8 characters"
+              className="w-full rounded-[4px] border border-gray-300 bg-[#F1F5F9] px-4 py-3 pr-10 focus:border-[#00C951] focus:bg-[#E8F0FE] focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-3"
+            >
+              {showPassword ? (
+                <EyeOff size={20} color="#00C951" />
+              ) : (
+                <Eye size={20} color="#B9C5D4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-[6px] bg-[#00C951] py-3 font-semibold text-white hover:bg-[#D6EFDF] hover:text-[#00C951]"
+        >
+          Sign Up
+        </button>
+
+        <p className="mt-[12px] text-[13px]">
+          Already have an account?{' '}
+          <Link
+            to="/login"
+            className="cursor-pointer font-semibold text-[#16a34a] underline"
+          >
+            Login
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+}
+
+
+===== FILE: src/pages/Total.jsx =====
+
+import MainLayout from '../layouts/MainLayout';
+
+function Total() {
+  return (
+    <MainLayout>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        {/* Card 1 */}
+        <div className="flex items-center gap-4 rounded-2xl border-gray-200/50 bg-white p-6 shadow-md shadow-gray-100">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#16a24a] text-[26px] text-white drop-shadow-xl">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              strokeWidth="0"
+              viewBox="0 0 512 512"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M435.2 80H76.8c-24.9 0-44.6 19.6-44.6 44L32 388c0 24.4 19.9 44 44.8 44h358.4c24.9 0 44.8-19.6 44.8-44V124c0-24.4-19.9-44-44.8-44zm0 308H76.8V256h358.4v132zm0-220H76.8v-44h358.4v44z" />
+            </svg>
+          </div>
+
+          <div>
+            <h6 className="mb-1 text-sm text-gray-500">Total Balance</h6>
+            <span className="text-[22px] font-semibold">₹70,000</span>
+          </div>
+        </div>
+
+        {/* Card 2 */}
+        <div className="flex items-center gap-4 rounded-2xl border-gray-200/50 bg-white p-6 shadow-md shadow-gray-100">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FF6900] text-[26px] text-white drop-shadow-xl">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              strokeWidth="0"
+              viewBox="0 0 512 512"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M461.2 128H80c-8.84 0-16-7.16-16-16s7.16-16 16-16h384c8.84 0 16-7.16 16-16 0-26.51-21.49-48-48-48H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h397.2c28.02 0 50.8-21.53 50.8-48V176c0-26.47-22.78-48-50.8-48zM416 336c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32z" />
+            </svg>
+          </div>
+
+          <div>
+            <h6 className="mb-1 text-sm text-gray-500">Total Income</h6>
+            <span className="text-[22px] font-semibold">₹50,000</span>
+          </div>
+        </div>
+
+        {/* Card 3 */}
+        <div className="flex items-center gap-4 rounded-2xl border-gray-200/50 bg-white p-6 shadow-md shadow-gray-100">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FB2C36] text-[26px] text-white drop-shadow-xl">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              strokeWidth="0"
+              viewBox="0 0 640 512"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M535 41c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l64 64c4.5 4.5 7 10.6 7 17s-2.5 12.5-7 17l-64 64c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l23-23L384 112c-13.3 0-24-10.7-24-24s10.7-24 24-24l174.1 0L535 41zM105 377l-23 23L256 400c13.3 0 24 10.7 24 24s-10.7 24-24 24L81.9 448l23 23c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0L7 441c-4.5-4.5-7-10.6-7-17s2.5-12.5 7-17l64-64c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9zM96 64l241.9 0c-3.7 7.2-5.9 15.3-5.9 24c0 28.7 23.3 52 52 52l117.4 0c-4 17 .6 35.5 13.8 48.8c20.3 20.3 53.2 20.3 73.5 0L608 169.5 608 384c0 35.3-28.7 64-64 64l-241.9 0c3.7-7.2 5.9-15.3 5.9-24c0-28.7-23.3-52-52-52l-117.4 0c4-17-.6-35.5-13.8-48.8c-20.3-20.3-53.2-20.3-73.5 0L32 342.5 32 128c0-35.3 28.7-64 64-64zm64 64l-64 0 0 64c35.3 0 64-28.7 64-64zM544 320c-35.3 0-64 28.7-64 64l64 0 0-64zM320 352a96 96 0 1 0 0-192 96 96 0 1 0 0 192z" />
+            </svg>
+          </div>
+
+          <div>
+            <h6 className="mb-1 text-sm text-gray-500">Total Expense</h6>
+            <span className="text-[22px] font-semibold">₹20,000</span>
+          </div>
+        </div>
+      </div>
+    </MainLayout>
+  );
+}
+
+export default Total;
+
+
+===== FILE: src/layouts/MainLayout.jsx =====
+
+import Topbar from '../components/Topbar';
+import Sidebar from '../components/Sidebar';
+import { useState } from 'react';
+
+export default function MainLayout({ children }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div>
+      <Topbar onMenuClick={() => setOpen(!open)} />
+      <Sidebar open={open} setOpen={setOpen} />
+
+      <div className="p-5 pl-0 pt-[70px] lg:pl-64">{children}</div>
+    </div>
+  );
+}
+
+
+===== FILE: src/components/Sidebar.jsx =====
+
+import { Link, useLocation } from 'react-router-dom';
+
+export default function Sidebar({ open, setOpen }) {
+  const { pathname } = useLocation();
+
+  return (
+    <div
+      className={`fixed top-[70px] z-40 -ml-4 bg-white transition-all lg:ml-0 ${open ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}
+    >
+      <div className="sticky top-[70px] h-[calc(100vh-61px)] w-64 border-r border-gray-200/50 bg-white p-5">
+        {/* Profile */}
+        <div className="mb-7 mt-3 flex flex-col items-center justify-center gap-3">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 font-medium text-gray-900">
+            SK
+          </div>
+          <h5 className="font-medium leading-6 text-gray-950">Sabir Kazi</h5>
+        </div>
+
+        {/* Menu Buttons */}
+        <SidebarBtn
+          label="Profile"
+          icon={<ProfileIcon />}
+          active={pathname === '/profile'}
+        />
+        <SidebarBtn
+          label="Dashboard"
+          icon={<DashboardIcon />}
+          active={pathname === '/dashboard'}
+          highlight
+        />
+        <SidebarBtn
+          label="Income"
+          icon={<IncomeIcon />}
+          active={pathname === '/income'}
+        />
+        <SidebarBtn
+          label="Expense"
+          icon={<ExpenseIcon />}
+          active={pathname === '/expense'}
+        />
+        <SidebarBtn label="Logout" icon={<LogoutIcon />} active={false} />
+      </div>
+    </div>
+  );
+}
+
+function SidebarBtn({ label, icon, active, highlight }) {
+  return (
+    <button
+      className={`mb-3 flex w-full cursor-pointer items-center gap-4 rounded-lg px-6 py-3 text-[15px] ${highlight ? 'bg-primary text-white' : ''} ${active ? 'bg-gray-100' : ''}`}
+    >
+      <span className="text-xl">{icon}</span>
+      {label}
+    </button>
+  );
+}
+
+function ProfileIcon() {
+  return (
+    <svg viewBox="0 0 496 512" fill="currentColor" className="text-xl">
+      <path d="M248 8C111..."></path>
+    </svg>
+  );
+}
+
+function DashboardIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="text-xl"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <rect width="7" height="9" x="3" y="3" rx="1"></rect>
+      <rect width="7" height="5" x="14" y="3" rx="1"></rect>
+      <rect width="7" height="9" x="14" y="12" rx="1"></rect>
+      <rect width="7" height="5" x="3" y="16" rx="1"></rect>
+    </svg>
+  );
+}
+
+function IncomeIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="text-xl"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <path d="M17 14h.01"></path>
+      <path d="M7 7h12a2 2..."></path>
+    </svg>
+  );
+}
+
+function ExpenseIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="text-xl"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <path d="M11 15h2a2 2 0 1 0..."></path>
+    </svg>
+  );
+}
+
+function LogoutIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="text-xl"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <path d="M9 21H5a2 2..."></path>
+      <polyline points="16 17 21 12 16 7"></polyline>
+      <line x1="21" x2="9" y1="12" y2="12"></line>
+    </svg>
+  );
+}
+
+
+===== FILE: src/components/Topbar.jsx =====
+
+import { X } from 'lucide-react';
+
+export default function Topbar({ onMenuClick }) {
+  return (
+    <div className="sticky top-0 z-30 flex gap-5 border-b border-gray-200/50 bg-white px-7 py-3 backdrop-blur-[2px]">
+      {/* Mobile Close / Menu Button */}
+      <button className="block text-black lg:hidden" onClick={onMenuClick}>
+        <X className="text-2xl" />
+      </button>
+
+      {/* Logo */}
+      <img
+        alt="logo1.png"
+        className="w-35 cursor-pointer bg-transparent object-contain md:ml-5"
+        src="what.png"
+      />
+    </div>
+  );
+}
+
+
+===== FILE: src/App.jsx =====
+
+import { Routes, Route } from 'react-router-dom';
+import Login from './pages/Auth/Login';
+import Signup from './pages/Auth/Signup';
+import Total from './pages/Total';
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+
+      {/* Protected Pages */}
+      <Route path="/total" element={<Total />} />
+    </Routes>
+  );
+}
+
+
+===== FILE: src/main.jsx =====
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom'; // 🟢 Add this line
+
+import App from './App.jsx';
+import './index.css';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+);
